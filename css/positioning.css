@@ -1,54 +1,9 @@
-* {
-    margin: 0px;
-    padding: 0px;
-}
-@font-face {
-    font-family: 'Media Markt';
-    src: url(mediamarkt.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'Media Markt Preis';
-    src: url(mediamarktpreis.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'Georgia1';
-    src: url(georgia.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'Constantia1';
-    src: url(constan.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'BODO1';
-    src: url(bodr.ttf) format('truetype');
-}
-img {
-    position: absolute;
-}
-textarea {
-    border: 3px solid transparent;
-    outline: none;
-    resize: none;
-    font-family: Media Markt;
-    position: absolute;
-    font-size: 30px;
-    background: transparent;
-    padding: 0.1em;
-    overflow: hidden;
-}
-textarea:not([readonly]) {
-    border: 3px solid #999;
-     animation: blink .5s step-end infinite alternate;
-}
-@keyframes blink {
-   50% { border-color: transparent; }
-}
 #news1schlag {
     top: 5px;
     left: 430px;
     width: 620px;
     height: 80px;
-    font-family: Georgia1; font-size: 40px; 
+    font-family: Georgia1; font-size: 40px;
     color: red;
 }
 #news1spruch {
@@ -64,7 +19,7 @@ textarea:not([readonly]) {
     left: 160px;
     width: 905px;
     height: 280px;
-    font-family: Georgia1; font-size: 29px; 
+    font-family: Georgia1; font-size: 29px;
     color: red;
 }
 #news1text2 {
@@ -72,7 +27,7 @@ textarea:not([readonly]) {
     left: 690px;
     width: 380px;
     height: 30px;
-    font-family: Georgia1; font-size: 17px; 
+    font-family: Georgia1; font-size: 17px;
     color: black;
 }
 #news2schlag {
@@ -80,7 +35,7 @@ textarea:not([readonly]) {
     left: 15px;
     width: 620px;
     height: 50px;
-    font-family: Constantia1; font-size: 30px; font-weight: bold; 
+    font-family: Constantia1; font-size: 30px; font-weight: bold;
 	transform: rotate(-1deg);
 }
 #news2text1 {
@@ -88,7 +43,7 @@ textarea:not([readonly]) {
     left: 20px;
     width: 660px;
     height: 490px;
-    font-family: Constantia1; font-size: 28px; 
+    font-family: Constantia1; font-size: 28px;
 	transform: rotate(-1deg);
 }
 #news3schlag {
@@ -96,28 +51,28 @@ textarea:not([readonly]) {
     left: 15px;
     width: 310px;
     height: 50px;
-    font-family: Bodo1; font-size: 32px; font-weight: bold; 
+    font-family: Bodo1; font-size: 32px; font-weight: bold;
 }
 #news3text1 {
     top: 1170px;
     left: 15px;
     width: 310px;
     height: 400px;
-    font-family: Bodo1; font-size: 27px; 
+    font-family: Bodo1; font-size: 27px;
 }
 #news4schlag {
     top: 1105px;
     left: 350px;
     width: 310px;
     height: 50px;
-    font-family: Bodo1; font-size: 32px; font-weight: bold; 
+    font-family: Bodo1; font-size: 32px; font-weight: bold;
 }
 #news4text1 {
     top: 1170px;
     left: 350px;
     width: 310px;
     height: 400px;
-    font-family: Bodo1; font-size: 27px; 
+    font-family: Bodo1; font-size: 27px;
 }
 #preis {
     top: 1120px;
@@ -126,14 +81,14 @@ textarea:not([readonly]) {
     height: 120px;
     font-size: 100px;
     color: white;
-    font-family: Media Markt Preis; 
+    font-family: Media Markt Preis;
 }
 #preisinfo1a {
     top: 1405px;
     left: 705px;
     width: 230px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo1b {
@@ -141,7 +96,7 @@ textarea:not([readonly]) {
     left: 955px;
     width: 80px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo2a {
@@ -149,7 +104,7 @@ textarea:not([readonly]) {
     left: 705px;
     width: 230px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo2b {
@@ -157,7 +112,7 @@ textarea:not([readonly]) {
     left: 955px;
     width: 80px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo3a {
@@ -165,7 +120,7 @@ textarea:not([readonly]) {
     left: 705px;
     width: 230px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo3b {
@@ -173,7 +128,7 @@ textarea:not([readonly]) {
     left: 955px;
     width: 80px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo4a {
@@ -181,7 +136,7 @@ textarea:not([readonly]) {
     left: 705px;
     width: 230px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo4b {
@@ -189,7 +144,7 @@ textarea:not([readonly]) {
     left: 955px;
     width: 80px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo5a {
@@ -197,7 +152,7 @@ textarea:not([readonly]) {
     left: 705px;
     width: 230px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }
 #preisinfo5b {
@@ -205,6 +160,6 @@ textarea:not([readonly]) {
     left: 955px;
     width: 80px;
     height: 40px;
-    font-family: 'Georgia1'; font-size: 27px; 
+    font-family: 'Georgia1'; font-size: 27px;
     color: black;
 }

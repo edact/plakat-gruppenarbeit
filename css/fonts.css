@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Media Markt';
+    src: url(mediamarkt.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Media Markt Preis';
+    src: url(mediamarktpreis.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Georgia1';
+    src: url(georgia.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Constantia1';
+    src: url(constan.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'BODO1';
+    src: url(bodr.ttf) format('truetype');
+}

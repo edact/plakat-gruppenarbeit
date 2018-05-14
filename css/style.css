@@ -1,0 +1,27 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+img {
+    position: absolute;
+}
+textarea {
+    border: 3px solid transparent;
+    outline: none;
+    resize: none;
+    font-family: Media Markt;
+    position: absolute;
+    font-size: 30px;
+    background: transparent;
+    padding: 0.1em;
+    overflow: hidden;
+}
+textarea:not([readonly]) {
+    border: 3px solid #999;
+     animation: blink .5s step-end infinite alternate;
+}
+
+@keyframes blink {
+   50% { border-color: transparent; }
+}
