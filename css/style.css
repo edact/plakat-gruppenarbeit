@@ -6,6 +6,7 @@
 img {
     position: absolute;
 }
+
 textarea {
     border: 3px solid transparent;
     outline: none;
@@ -17,6 +18,7 @@ textarea {
     padding: 0.1em;
     overflow: hidden;
 }
+
 textarea:not([readonly]) {
     border: 3px solid #999;
      animation: blink .5s step-end infinite alternate;
