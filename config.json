@@ -9,7 +9,19 @@
                 },
                 "preis": {
                     "type": "emoji",
+<<<<<<< HEAD
                     "emojis": ["em---1", "em--1"],
+=======
+                    "placeholder": "",
+                    "maxlength": 1
+                }
+            }
+        },
+        "2":{
+            "inputs": {
+                "stimmung": {
+                    "type": "emoji",
+>>>>>>> 281394bda4ef2e39419cc1c097df511db5526e9a
                     "placeholder": "",
                     "maxlength": 1
                 }

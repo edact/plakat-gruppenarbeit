@@ -8,7 +8,11 @@ img {
     z-index: 1;
 }
 
+<<<<<<< HEAD
 textarea, .emoji-picker {
+=======
+textarea {
+>>>>>>> 281394bda4ef2e39419cc1c097df511db5526e9a
     border: 3px solid transparent;
     outline: none;
     resize: none;
@@ -21,7 +25,11 @@ textarea, .emoji-picker {
     z-index: 2;
 }
 
+<<<<<<< HEAD
 textarea:not([readonly]), .emoji-picker:not([readonly]) {
+=======
+textarea:not([readonly]) {
+>>>>>>> 281394bda4ef2e39419cc1c097df511db5526e9a
     border: 3px solid #999;
      animation: blink .5s step-end infinite alternate;
 }
