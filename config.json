@@ -1,6 +1,19 @@
 {
-    "1":["news1schlag", "news1spruch",  "news1text1",  "news1text2"],
-    "2":["news2schlag", "news2text1"],
-    "3":["news3schlag", "news3text1", "news4schlag", "news4text1"],
-    "4":["preis", "preisinfo1a", "preisinfo1b", "preisinfo2a", "Preisinfo2b", "preisinfo3a", "preisinfo3b", "preisinfo4a", "preisinfo4b", "preisinfo5a", "preisinfo5b"]
+    "groups": {
+        "1":{
+            "inputs": {
+                "schlagzeile": {
+                    "type": "text",
+                    "placeholder": "Schlagzeile",
+                    "maxlength": 100
+                },
+                "preis": {
+                    "type": "emoji",
+                    "emojis": ["em---1", "em--1"],
+                    "placeholder": "",
+                    "maxlength": 1
+                }
+            }
+        }
+    }
 }

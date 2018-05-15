@@ -1,22 +1,52 @@
 <link rel='stylesheet' href='css/style.css' />
 <link rel='stylesheet' href='css/fonts.css' />
 <link rel='stylesheet' href='css/positioning.css' />
-<script src='js/jquery.min.js'></script>
-<img src='img/background.jpg' />
-<?php
-error_reporting(0);
-$feldarray = json_encode(file_get_contents('config.json'), true);
+<link rel='stylesheet' href='css/emoji.min.css' />
 
-foreach($feldarray as $gruppe => $felder) {
-	if($_GET['gruppe'] == $gruppe) {
+<img src='img/background.jpg' />
+
+<?php
+//error_reporting(0);
+$usedInputs = [];
+$config = json_decode(file_get_contents('config.json'), true);
+
+
+foreach($config['groups'] as $groupName => $group) {
+
+	$inputs = $group['inputs'];
+
+	if($_GET['group'] == $groupName) {
 		$not_ed = "";
 	} else {
 		$not_ed = "readonly";
 	}
 
-	foreach($felder as $f) {
-		echo "<textarea id='".$f."' ".$class." ".$not_ed.">".file_get_contents('data/'.$f.'.data')."</textarea>";
+	foreach($inputs as $inputName => $inp) {
+		if($inp['type'] == "text") {
+			echo "
+			<textarea id='".$inputName."' ".$not_ed." placeholder='".$inp['placeholder']."' maxlength='".$inp['maxlength']."'>".file_get_contents('data/'.$inputName.'.data')."</textarea>
+			";
+		} elseif($inp['type'] == "emoji") {
+			echo "<div id='".$inputName."' class='emoji-picker em ".file_get_contents('data/'.$inputName.'.data')."' ".$not_ed."></div>";
+
+			echo "<div class='emoji-list' data-input='".$inputName."'>";
+			foreach($inp['emojis'] as $emo) {
+				echo "<div class='em ".$emo."' data-value='".$emo."'></div>";
+			}
+			echo "</div>";
+		}
 	}
+
+	$usedInputs = array_merge($usedInputs, array_keys($inputs));
+}
+
+$savedInputs = str_replace('.data', '', str_replace('data/', '', glob('data/*.data')));
+$obsoleteInputs = array_diff($savedInputs, $usedInputs);
+
+foreach ($obsoleteInputs as $ob) {
+	unlink('./data/'.$ob.".data");
 }
 ?>
+
+<script src='js/jquery.min.js'></script>
 <script src='js/script.js'></script>
