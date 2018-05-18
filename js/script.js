@@ -1,12 +1,12 @@
 $('textarea').keyup(function() {
-	$.post("set.meth", {
+	$.post("setData.php", {
 		key: $(this).attr('id'),
 		value: $(this).val()
 	});
 });
 
 setInterval(function() {
-	$.getJSON("get.meth").done(function(json) {
+	$.getJSON("getData.php").done(function(json) {
 		$('textarea[readonly]').each(function() {
 			$(this).val(json[$(this).attr('id')]);
 		});
@@ -22,7 +22,7 @@ $('.emoji-picker:not([readonly])').click(function() {
 });
 
 $('.emoji-list .em').click(function() {
-	$.post("set.meth", {
+	$.post("setData.php", {
 		key: $(this).parent('.emoji-list').data('input'),
 		value: $(this).data('value')
 	});
