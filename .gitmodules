@@ -1,0 +1,3 @@
+[submodule "laradock-plakat-gruppenarbeit"]
+	path = laradock-plakat-gruppenarbeit
+	url = https://github.com/Laradock/laradock.git
