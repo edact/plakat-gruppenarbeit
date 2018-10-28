@@ -1,6 +1,6 @@
 {
     "groups": {
-        "1":{
+        "1": {
             "inputs": {
                 "schlagzeile": {
                     "type": "text",
@@ -9,8 +9,20 @@
                 },
                 "preis": {
                     "type": "emoji",
-                    "emojis": ["em---1", "em--1"],
+                    "emojis": [
+                        "em---1",
+                        "em--1"
+                    ],
                     "placeholder": "",
+                    "maxlength": 1
+                },
+                "bild": {
+                    "type": "image",
+                    "images": [
+                        "./img/activeboard.jpg",
+                        "https://www.magnettafel.net/media/catalog/product/cache/10/image/9df78eab33525d08d6e5fb8d27136e95/m/o/mobile-kreidetafel-6.jpg"
+                    ],
+                    "placeholder": "https://via.placeholder.com/350x350/ccc",
                     "maxlength": 1
                 }
             }

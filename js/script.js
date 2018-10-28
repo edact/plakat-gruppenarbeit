@@ -1,35 +1,115 @@
-$('textarea').keyup(function() {
-	$.post("setData.php", {
-		key: $(this).attr('id'),
-		value: $(this).val()
-	});
+/*
+//refresh fillables
+setInterval(function () {
+    $.getJSON("getData.php").done(function (json) {
+
+        $('textarea[readonly]').each(function () {
+            $(this).val(json[$(this).attr('id')]['data']);
+        });
+
+        $('.emoji-picker[readonly]').each(function () {
+            $(this).attr('class', 'fillable emoji-picker em');
+            $(this).addClass(json[$(this).attr('id')]['data']);
+        });
+
+        $('.image-picker[readonly]').each(function () {
+            $(this).css('background-image', 'url(' + json[$(this).attr('id')]['data'] + ')');
+        });
+
+        $('.wrapper:not(.master) .fillable').each(function () {
+            $(this).css('top', json[$(this).attr('id')]['top']);
+            $(this).css('left', json[$(this).attr('id')]['left']);
+            
+        });
+    });
+}, 250);
+*/
+$(function () {
+    $.getJSON("getData.php").done(function (json) {
+        $('.fillable').each(function () {
+            updateFillable($(this), json[$(this).attr('id')]);
+
+            $(this).css('top', json[$(this).attr('id')]['top']);
+            $(this).css('left', json[$(this).attr('id')]['left']);
+        });
+    });
+});
+setInterval(function () {
+    $.getJSON("getData.php").done(function (json) {
+        $('.fillable[readonly]').each(function () {
+            updateFillable($(this), json[$(this).attr('id')]);
+
+            $('.wrapper:not(.master) .fillable').each(function () {
+                $(this).css('top', json[$(this).attr('id')]['top']);
+                $(this).css('left', json[$(this).attr('id')]['left']);
+            });
+        });
+    });
+}, 250);
+
+
+//save data to file
+function setData(key, type, value) {
+    $.post("setData.php", {
+        key: key,
+        type: type,
+        value: value
+    });
+}
+
+function updateFillable(fillable, json) {
+    console.log($(fillable).hasClass('fillable-text'));
+    if ($(fillable).hasClass('fillable-text')) {
+        $(fillable).val(json['data']);
+    }
+
+    if ($(fillable).hasClass('fillable-emoji')) {
+        $(fillable).attr('class', 'fillable fillable-emoji em');
+        $(fillable).addClass(json['data']);
+    }
+
+    if ($(fillable).hasClass('fillable-image')) {
+        $(fillable).css('background-image', 'url(' + json['data'] + ')');
+    }
+}
+
+//save text
+$('textarea').keyup(function () {
+    setData($(this).attr('id'), "data", $(this).val())
 });
 
-setInterval(function() {
-	$.getJSON("getData.php").done(function(json) {
-		$('textarea[readonly]').each(function() {
-			$(this).val(json[$(this).attr('id')]);
-		});
-		$('.emoji-picker[readonly]').each(function() {
-			$(this).attr('class', 'emoji-picker em');
-			$(this).addClass(json[$(this).attr('id')]);
-		});
-	});
-},250);
+//save emojis
+$('.emoji-list .em').click(function () {
+    setData($(this).parent('.emoji-list').data('input'), 'data', $(this).data('value'));
 
-$('.emoji-picker:not([readonly])').click(function() {
-	$('.emoji-list[data-input="'+$(this).attr('id')+'"]').css('display', 'flex');
+    $('.fillable-emoji[id="' + $(this).parent('.emoji-list').data('input') + '"]').attr('class', 'fillable fillable-emoji em');
+    $('.fillable-emoji[id="' + $(this).parent('.emoji-list').data('input') + '"]').addClass($(this).data('value'));
+
+    $(this).parent('.emoji-list').css('display', 'none');
 });
 
-$('.emoji-list .em').click(function() {
-	$.post("setData.php", {
-		key: $(this).parent('.emoji-list').data('input'),
-		value: $(this).data('value')
-	});
+//save images
+$('.image-list .image-item').click(function () {
+    setData($(this).parent('.image-list').data('input'), 'data', $(this).data('value'));
 
-	$('.emoji-picker[id="'+$(this).parent('.emoji-list').data('input')+'"]').attr('class', 'emoji-picker em');
-	$('.emoji-picker[id="'+$(this).parent('.emoji-list').data('input')+'"]').addClass($(this).data('value'));
+    $('.fillable-image[id="' + $(this).parent('.image-list').data('input') + '"]').css('background-image', 'url(' + $(this).data('value') + ')');
 
+    $(this).parent('.image-list').css('display', 'none');
+});
 
-	$(this).parent('.emoji-list').css('display', 'none');
+//display emoji-picker
+$('.fillable-emoji:not([readonly])').click(function () {
+    $('.emoji-list[data-input="' + $(this).attr('id') + '"]').css('display', 'flex');
+});
+
+//display image-picker
+$('.fillable-image:not([readonly])').click(function () {
+    $('.image-list[data-input="' + $(this).attr('id') + '"]').css('display', 'flex');
+});
+
+$(".wrapper.master .fillable").draggable({
+    stop: function () {
+        setData($(this).attr('id'), 'top', $(this).css('top'));
+        setData($(this).attr('id'), 'left', $(this).css('left'));
+    }
 });
