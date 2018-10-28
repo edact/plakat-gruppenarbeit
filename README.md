@@ -1,7 +1,9 @@
 # Digitales Plakat für Gruppenarbeiten
 ## Textfelder hinzufügen und Gruppen zuweisen
+
 In der Datei ´config.json´ liegt die Konfiguration für alle Gruppen und deren untergeordneten Textfelder. Der Aufbau der Datei ist folgendermaßen:
-```
+
+```json
 {
     "groups": {
         "1":{
@@ -31,7 +33,7 @@ In der Datei ´config.json´ liegt die Konfiguration für alle Gruppen und deren
 
 ```
 
-Unter ´groups´ findet sich die Auflistung aller Gruppen. Innerhalb der Gruppen können unter `inputs` einzelne Textfelder erfasst werden. Ein Textfeld kann dabei von folgenden Typen sein:
+Unter `groups` findet sich die Auflistung aller Gruppen. Innerhalb der Gruppen können unter `inputs` einzelne Textfelder erfasst werden. Ein Textfeld kann dabei von folgenden Typen sein:
 1. text
 2. emoji
 
@@ -44,7 +46,7 @@ Dem Typ "emoji" ist ein weiteres Attribut `emojis` angehängt, in welchem mittel
 ## Textfelder positionieren
 Um die Textfelder auf der Webseite zu positionieren, muss unter `css/positioning.css` ein Eintrag mit einer `#` gefolgt dem Namen des Textfeldes, wie er in der `config.json` gewählt wurde, erstellt werden. Für das beispielhafte Textfeld Schlagzeile würde also folgender CSS Eintrag entstehen:
 
-```
+```css
 #schlagzeile {
     top: 5px;
     left: 430px;
@@ -61,7 +63,7 @@ Die Befehle innerhalb der geschwungenen Klammer verändern das ausgewählte Text
 ## Schriftarten hinzufügen
 Wenn besondere Schriftarten verwendet werden sollen, müssen diese bspw. als `.ttf` Datei in dem Ordner `/fonts` abgelegt werden. In der Datei `css/fonts.css` kann die Schriftart dann für Textfelder verfügbar gemacht werden. Ein beispielhafter Eintrag für eine Abwandlung von `Georgia` sähe folgendermaßen aus:
 
-```
+```css
 @font-face {
     font-family: 'Georgia1';
     src: url(../fonts/georgia.ttf) format('truetype');
