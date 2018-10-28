@@ -1,0 +1,91 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.background {
+    position: absolute;
+    z-index: 1;
+}
+
+.wrapper {
+    position: relative;
+    .fillable {
+        border: 3px solid transparent;
+        outline: none;
+        resize: none;
+        font-family: Media Markt;
+        position: absolute;
+        font-size: 30px;
+        padding: 0.1em;
+        overflow: hidden;
+        z-index: 2;
+        &:not(.fillable-emoji) {
+            background: transparent;
+            background-position: center;
+            background-size: cover;
+        }
+        &:not([readonly]) {
+            border: 3px solid #999;
+            animation: blink .5s step-end infinite alternate;
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    }
+    .emoji-list {
+        display: none;
+        position: fixed;
+        z-index: 3;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: -300px;
+        width: 400px;
+        height: 600px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: #ccc;
+        padding: 15px;
+        border: 5px solid black;
+        .em {
+            width: 75px;
+            height: 75px;
+            padding: 5px;
+        }
+    }
+    .image-list {
+        display: none;
+        position: fixed;
+        z-index: 3;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: -300px;
+        width: 400px;
+        height: 600px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: #ccc;
+        padding: 15px;
+        border: 5px solid black;
+        .image-item {
+            width: 150px;
+            height: 150px;
+            padding: 5px;
+            background-position: center;
+            background-size: cover;
+            border: 1px solid black;
+        }
+    }
+    &.master {
+        .fillable {
+            cursor: move;
+        }
+    }
+}
