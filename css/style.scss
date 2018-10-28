@@ -21,6 +21,10 @@
         padding: 0.1em;
         overflow: hidden;
         z-index: 2;
+        &.ui-draggable-dragging {
+            opacity: 0.85;
+            border: 3px dotted black;
+        }
         &:not(.fillable-emoji) {
             background: transparent;
             background-position: center;
