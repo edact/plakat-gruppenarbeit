@@ -3,50 +3,84 @@
 <link rel='stylesheet' href='css/positioning.css' />
 <link rel='stylesheet' href='css/emoji.min.css' />
 
-<img src='img/background.jpg' />
+<img class="background" src='img/background.jpg' />
 
 <?php
 //error_reporting(0);
+
+echo "<div class='wrapper " . $_GET['role'] . "'>";
+
 $usedInputs = [];
 $config = json_decode(file_get_contents('config.json'), true);
 
-foreach($config['groups'] as $groupName => $group) {
-	$inputs = $group['inputs'];
+foreach ($config['groups'] as $groupName => $group) {
+    $inputs = $group['inputs'];
 
-	if($_GET['group'] == $groupName) {
-		$not_ed = "";
-	} else {
-		$not_ed = "readonly";
-	}
+    if ($_GET['group'] == $groupName && $_GET['role'] != "master") {
+        $not_ed = "";
+    } else {
+        $not_ed = "readonly";
+    }
 
-	foreach($inputs as $inputName => $inp) {
-		if($inp['type'] == "text") {
-			echo "
-			<textarea id='".$inputName."' ".$not_ed." placeholder='".$inp['placeholder']."' maxlength='".$inp['maxlength']."'>".file_get_contents('data/'.$inputName.'.data')."</textarea>
+    foreach ($inputs as $inputName => $inp) {
+        //Text
+        if ($inp['type'] == "text") {
+            echo "
+			<textarea class='fillable fillable-text' id='" . $inputName . "' " . $not_ed . " placeholder='" . $inp['placeholder'] . "' maxlength='" . $inp['maxlength'] . "'></textarea>
 			";
-		} elseif($inp['type'] == "emoji") {
-			echo "<div id='".$inputName."' class='emoji-picker em ".file_get_contents('data/'.$inputName.'.data')."' ".$not_ed."></div>";
+        }
 
-			echo "<div class='emoji-list' data-input='".$inputName."'>";
+        //Emoji
+        elseif ($inp['type'] == "emoji") {
 
-			foreach($inp['emojis'] as $emo) {
-				echo "<div class='em ".$emo."' data-value='".$emo."'></div>";
-			}
+            if (empty($inp['value'])) {
+                $inp['value'] = $inp['placeholder'];
+            }
 
-			echo "</div>";
-		}
-	}
+            echo "<div id='" . $inputName . "' class='fillable fillable-emoji em' " . $not_ed . "></div>";
 
-	$usedInputs = array_merge($usedInputs, array_keys($inputs));
+            echo "<div class='emoji-list' data-input='" . $inputName . "'>";
+
+            foreach ($inp['emojis'] as $emo) {
+                echo "<div class='em " . $emo . "' data-value='" . $emo . "'></div>";
+            }
+
+            echo "</div>";
+        }
+
+        //Image
+        elseif ($inp['type'] == "image") {
+            if (empty($inp['value'])) {
+                $inp['value'] = $inp['placeholder'];
+            }
+
+            echo "<div id='" . $inputName . "' class='fillable fillable-image' " . $not_ed . ">";
+
+            echo "</div>";
+
+            echo "<div class='image-list' data-input='" . $inputName . "'>";
+
+            foreach ($inp['images'] as $src) {
+                echo "<div class='image-item' data-value='" . $src . "' style='background-image: url(" . $src . ")'></div>";
+            }
+
+            echo "</div>";
+        }
+    }
+
+    $usedInputs = array_merge($usedInputs, array_keys($inputs));
 }
+
+echo "</div>";
 
 $savedInputs = str_replace('.data', '', str_replace('data/', '', glob('data/*.data')));
 $obsoleteInputs = array_diff($savedInputs, $usedInputs);
 
 foreach ($obsoleteInputs as $ob) {
-	unlink('./data/'.$ob.".data");
+    unlink('./data/' . $ob . ".data");
 }
 ?>
 
 <script src='js/jquery.min.js'></script>
+<script src='js/jquery-ui.min.js'></script>
 <script src='js/script.js'></script>
