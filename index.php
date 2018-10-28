@@ -66,6 +66,12 @@ foreach ($config['groups'] as $groupName => $group) {
 
             echo "</div>";
         }
+
+        //create file if it doesnt exist yet
+        if (!file_exists('data/' . $inputName . '.data')) {
+            file_put_contents('data/' . $inputName . '.data', trim($inp['initial-value']));
+        }
+
     }
 
     $usedInputs = array_merge($usedInputs, array_keys($inputs));

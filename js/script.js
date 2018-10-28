@@ -1,29 +1,3 @@
-/*
-//refresh fillables
-setInterval(function () {
-    $.getJSON("getData.php").done(function (json) {
-
-        $('textarea[readonly]').each(function () {
-            $(this).val(json[$(this).attr('id')]['data']);
-        });
-
-        $('.emoji-picker[readonly]').each(function () {
-            $(this).attr('class', 'fillable emoji-picker em');
-            $(this).addClass(json[$(this).attr('id')]['data']);
-        });
-
-        $('.image-picker[readonly]').each(function () {
-            $(this).css('background-image', 'url(' + json[$(this).attr('id')]['data'] + ')');
-        });
-
-        $('.wrapper:not(.master) .fillable').each(function () {
-            $(this).css('top', json[$(this).attr('id')]['top']);
-            $(this).css('left', json[$(this).attr('id')]['left']);
-            
-        });
-    });
-}, 250);
-*/
 $(function () {
     $.getJSON("getData.php").done(function (json) {
         $('.fillable').each(function () {
@@ -64,7 +38,8 @@ function updateFillable(fillable, json) {
     }
 
     if ($(fillable).hasClass('fillable-emoji')) {
-        $(fillable).attr('class', 'fillable fillable-emoji em');
+        $(fillable).removeClass($(fillable).data('value'));
+        $(fillable).data('value', json['data']);
         $(fillable).addClass(json['data']);
     }
 
@@ -108,6 +83,7 @@ $('.fillable-image:not([readonly])').click(function () {
 });
 
 $(".wrapper.master .fillable").draggable({
+    cancel: "",
     stop: function () {
         setData($(this).attr('id'), 'top', $(this).css('top'));
         setData($(this).attr('id'), 'left', $(this).css('left'));
