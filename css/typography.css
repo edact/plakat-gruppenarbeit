@@ -2,19 +2,41 @@
     font-family: 'Media Markt';
     src: url(../fonts/mediamarkt.ttf) format('truetype');
 }
+
 @font-face {
     font-family: 'Media Markt Preis';
     src: url(../fonts/mediamarktpreis.ttf) format('truetype');
 }
+
 @font-face {
     font-family: 'Georgia1';
     src: url(../fonts/georgia.ttf) format('truetype');
 }
+
 @font-face {
     font-family: 'Constantia1';
     src: url(../fonts/constan.ttf) format('truetype');
 }
+
 @font-face {
     font-family: 'BODO1';
     src: url(../fonts/bodr.ttf) format('truetype');
+}
+
+#schlagzeile {
+    font-family: Georgia1;
+    font-size: 40px;
+    color: red;
+}
+
+#preis {
+    font-size: 100px;
+    color: white;
+    font-family: Media Markt Preis;
+}
+
+#beschreibung {
+    font-family: Georgia1;
+    font-size: 20px;
+    color: black;
 }
