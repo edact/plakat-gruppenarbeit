@@ -1,21 +1,24 @@
 $(function () {
     $.getJSON("getData.php").done(function (json) {
         $('.fillable').each(function () {
-            updateFillable($(this), json[$(this).attr('id')]);
+            updateFillable($(this), json[$(this).data('identifier')]);
 
-            $(this).css('top', json[$(this).attr('id')]['top']);
-            $(this).css('left', json[$(this).attr('id')]['left']);
+            $(this).css('top', json[$(this).data('identifier')]['top']);
+            $(this).css('left', json[$(this).data('identifier')]['left']);
+
+            $(this).css('width', json[$(this).data('identifier')]['width']);
+            $(this).css('height', json[$(this).data('identifier')]['height']);
         });
     });
 });
 setInterval(function () {
     $.getJSON("getData.php").done(function (json) {
         $('.fillable[readonly]').each(function () {
-            updateFillable($(this), json[$(this).attr('id')]);
+            updateFillable($(this), json[$(this).data('identifier')]);
 
-            $('.wrapper:not(.master) .fillable').each(function () {
-                $(this).css('top', json[$(this).attr('id')]['top']);
-                $(this).css('left', json[$(this).attr('id')]['left']);
+            $('.wrapper:not(.master):not(.editor) .fillable[readonly]').each(function () {
+                $(this).css('top', json[$(this).data('identifier')]['top']);
+                $(this).css('left', json[$(this).data('identifier')]['left']);
             });
         });
     });
@@ -32,9 +35,8 @@ function setData(key, type, value) {
 }
 
 function updateFillable(fillable, json) {
-    console.log($(fillable).hasClass('fillable-text'));
     if ($(fillable).hasClass('fillable-text')) {
-        $(fillable).val(json['data']);
+        $(fillable).children('textarea').val(json['data']);
     }
 
     if ($(fillable).hasClass('fillable-emoji')) {
@@ -57,8 +59,8 @@ $('textarea').keyup(function () {
 $('.emoji-list .em').click(function () {
     setData($(this).parent('.emoji-list').data('input'), 'data', $(this).data('value'));
 
-    $('.fillable-emoji[id="' + $(this).parent('.emoji-list').data('input') + '"]').attr('class', 'fillable fillable-emoji em');
-    $('.fillable-emoji[id="' + $(this).parent('.emoji-list').data('input') + '"]').addClass($(this).data('value'));
+    $('.fillable-emoji[data-identifier="' + $(this).parent('.emoji-list').data('input') + '"]').attr('class', 'fillable fillable-emoji em');
+    $('.fillable-emoji[data-identifier="' + $(this).parent('.emoji-list').data('input') + '"]').addClass($(this).data('value'));
 
     $(this).parent('.emoji-list').css('display', 'none');
 });
@@ -67,25 +69,33 @@ $('.emoji-list .em').click(function () {
 $('.image-list .image-item').click(function () {
     setData($(this).parent('.image-list').data('input'), 'data', $(this).data('value'));
 
-    $('.fillable-image[id="' + $(this).parent('.image-list').data('input') + '"]').css('background-image', 'url(' + $(this).data('value') + ')');
+    $('.fillable-image[data-identifier="' + $(this).parent('.image-list').data('input') + '"]').css('background-image', 'url(' + $(this).data('value') + ')');
 
     $(this).parent('.image-list').css('display', 'none');
 });
 
 //display emoji-picker
 $('.fillable-emoji:not([readonly])').click(function () {
-    $('.emoji-list[data-input="' + $(this).attr('id') + '"]').css('display', 'flex');
+    $('.emoji-list[data-input="' + $(this).data('identifier') + '"]').css('display', 'flex');
 });
 
 //display image-picker
 $('.fillable-image:not([readonly])').click(function () {
-    $('.image-list[data-input="' + $(this).attr('id') + '"]').css('display', 'flex');
+    $('.image-list[data-input="' + $(this).data('identifier') + '"]').css('display', 'flex');
 });
 
-$(".wrapper.master .fillable").draggable({
+$(".wrapper.master .fillable, .wrapper.editor .fillable").draggable({
     cancel: "",
     stop: function () {
-        setData($(this).attr('id'), 'top', $(this).css('top'));
-        setData($(this).attr('id'), 'left', $(this).css('left'));
+        setData($(this).data('identifier'), 'top', $(this).css('top'));
+        setData($(this).data('identifier'), 'left', $(this).css('left'));
+    }
+});
+
+$(".wrapper.editor .fillable").resizable({
+    cancel: "",
+    stop: function () {
+        setData($(this).data('identifier'), 'width', $(this).css('width'));
+        setData($(this).data('identifier'), 'height', $(this).css('height'));
     }
 });
