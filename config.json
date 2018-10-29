@@ -1,29 +1,70 @@
 {
-    "groups": {
-        "1": {
-            "inputs": {
-                "schlagzeile": {
-                    "type": "text",
-                    "initial-value": "Schlagzeile",
-                    "maxlength": 100
-                },
-                "preis": {
-                    "type": "emoji",
-                    "initial-value": "em---1",
-                    "emojis": [
-                        "em---1",
-                        "em--1"
-                    ]
-                },
-                "bild": {
-                    "type": "image",
-                    "initial-value": "https://via.placeholder.com/350x350/ccc",
-                    "images": [
-                        "./img/activeboard.jpg",
-                        "https://www.magnettafel.net/media/catalog/product/cache/10/image/9df78eab33525d08d6e5fb8d27136e95/m/o/mobile-kreidetafel-6.jpg"
-                    ]
-                }
+    "mett": {
+        "fillables": {
+            "schlagzeile": {
+                "type": "text",
+                "initial-value": "Schlagzeile",
+                "maxlength": 100
+            },
+            "stimmung": {
+                "type": "emoji",
+                "initial-value": "em---1",
+                "emojis": [
+                    "em---1",
+                    "em--1"
+                ]
+            },
+            "bild": {
+                "type": "image",
+                "initial-value": "https://via.placeholder.com/350x350/ccc",
+                "images": [
+                    "./img/activeboard.jpg",
+                    "https://www.magnettafel.net/media/catalog/product/cache/10/image/9df78eab33525d08d6e5fb8d27136e95/m/o/mobile-kreidetafel-6.jpg"
+                ]
+            },
+            "beschreibung": {
+                "type": "external",
+                "source-poster": "wurst",
+                "source-fillable": "beschreibung"
             }
+        },
+        "groups": {
+            "1": [
+                "schlagzeile",
+                "preis"
+            ],
+            "2": [
+                "bild"
+            ]
+        }
+    },
+    "wurst": {
+        "fillables": {
+            "schlagzeile": {
+                "type": "external",
+                "source-poster": "mett",
+                "source-fillable": "schlagzeile"
+            },
+            "preis": {
+                "type": "external",
+                "source-poster": "mett",
+                "source-fillable": "preis"
+            },
+            "bild": {
+                "type": "external",
+                "source-poster": "mett",
+                "source-fillable": "bild"
+            },
+            "beschreibung": {
+                "type": "text",
+                "initial-value": "Beschreiben Sie die Situation...",
+                "maxlength": 150
+            }
+        },
+        "groups": {
+            "1": [
+                "beschreibung"
+            ]
         }
     }
 }
