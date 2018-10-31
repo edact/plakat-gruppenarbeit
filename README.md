@@ -9,27 +9,27 @@ In der Datei ´config.json´ liegt die Konfiguration für alle Plakate und deren
     "uebersicht": {
         "fillables": {
             "schlagzeile": {
-                /*...*/
+                ...
             },
             "stimmung": {
-                /*...*/
+                ...
             }
         },
         "groups": {
             "1": [
-                /*...*/
+                ...
             ],
             "2": [
-                /*...*/
+                ...
             ]
         }
     },
     "detail": {
         "fillables": {
-            /*...*/
+            ...
         },
         "groups": {
-            /*...*/
+            ...
         }
     }
 }
